@@ -1,3 +1,5 @@
+# 큰수만들기 코드
+
 def solution(number, k):
     answer = ''
     answer_list = []
