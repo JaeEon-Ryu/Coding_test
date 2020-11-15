@@ -1,10 +1,28 @@
-# 이중 for문으로는 풀 수 없는 문제
-# 복잡도를 O(n)으로 줄여서 풀어야 한다.
-# 접근 방법을 다시 생각하도록 해야 함
-
-def solution(gems):
-    answer = []
-    return answer
+'''
+시간 복잡도를 줄였지만 정확성, 효율성 둘 다 전보다 떨어졌다,,
+내일 또 다른방법으로 풀어보아야겠다,,,,,,,,,
+'''
+#
+# def solution(gems):
+#
+#     start_index,end_index = 0,1
+#     unique_gems = len(set(gems))
+#
+#     start_size_up_flag = False
+#     while start_index <= len(gems) and end_index <= len(gems):
+#
+#         if start_size_up_flag:
+#             start_index += 1
+#             if len(set(gems[start_index:end_index])) != unique_gems:
+#                 break
+#         else:
+#
+#             if len(set(gems[start_index:end_index])) == unique_gems:
+#                 start_size_up_flag = True
+#             else:
+#                 end_index += 1
+#
+#     return [start_index,end_index]
 
 # 시간초과가 난 코드
 # def solution(gems):
@@ -38,6 +56,6 @@ def solution(gems):
 #             #print(sp," ",ep)
 #
 #     return [sp,ep]
-
-gems = ["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]
+gems = ["ZZZ", "YYY", "NNNN", "YYY", "BBB"]
+#gems = ["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]
 print(solution(gems))
