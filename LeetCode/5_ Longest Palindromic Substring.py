@@ -10,6 +10,8 @@ class Solution:
             return s[i + 1:j]
 
         for k in range(len_s):
-            longest_p = max(helper(k, k), helper(k, k + 1), longest_p, key=len)
+            longest_p = max(helper(k, k), helper(k, k + 1), longest_p, key=len) # 홀수, 짝수 
 
         return longest_p
+
+# DBabichev 참고
