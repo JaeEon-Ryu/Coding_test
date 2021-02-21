@@ -32,7 +32,6 @@ class Solution:
 '''
 someone else's solution
 reference : StefanPochmann
-
 class Solution:
     def removeNthFromEnd(self, head, n):
         def index(node):
@@ -44,5 +43,4 @@ class Solution:
             return i
         index(head)
         return head.next
-
 '''
