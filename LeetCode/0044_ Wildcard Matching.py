@@ -1,48 +1,40 @@
-def isMatch(s = 'acdcb',p='ac??b'):
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
 
-    # reference : StefanPochmann
+        # reference : StefanPochmann
 
-    def find(s, p):
-        for i in range(len(s) - len(p) + 1):
-            for j in range(len(p)):
-                if p[j] not in (s[i + j], '?'):
-                    return -1
-            else:
-                return i
-        return -1
+        def find(s, p):
+            for i in range(len(s) - len(p) + 1):
+                for j in range(len(p)):
+                    if p[j] not in (s[i + j], '?'):
+                        break
+                else:
+                    return i
+            return -1
 
-    parts = p.split('*')
+        parts = p.split('*')
 
-    # '*' 가 하나도 없을 때
-    if len(parts) == 1:
-        return len(s) == len(p) and find(s, p) >= 0
+        # '*' 가 하나도 없을 때
+        if len(parts) == 1:
+            return len(s) == len(p) and find(s, p) >= 0
 
-    if find(s, parts[0]) != 0:
-        return False
-
-    s = s[len(parts.pop(0)):]
-    n = len(s) - len(parts[-1])
-
-    if find(s[n:], parts.pop()) != 0:
-        return False
-
-    s = s[:n]
-    for part in parts:
-        index = find(s, part)
-        if index < 0:
+        if find(s, parts[0]) != 0:
             return False
-        s = s[index + len(part):]
 
-    return True
+        s = s[len(parts.pop(0)):]
+        n = len(s) - len(parts[-1])
 
-    '''
-    def all(iterable):
-        for element in iterable:
-            if not element:
+        if find(s[n:], parts.pop()) != 0:
+            return False
+
+        s = s[:n]
+        for part in parts:
+            index = find(s, part)
+            if index < 0:
                 return False
-        return True
-    '''
+            s = s[index + len(part):]
 
+        return True
 
     '''
     if len(s) - p.count('*') < len(p) - p.count('*'):
