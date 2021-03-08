@@ -1,10 +1,13 @@
-def isMatch(s = 'acdcb',p='a*c?b'):
+def isMatch(s = 'acdcb',p='ac??b'):
 
     # reference : StefanPochmann
 
     def find(s, p):
         for i in range(len(s) - len(p) + 1):
-            if all(p[j] in (s[i + j], '?') for j in range(len(p))):
+            for j in range(len(p)):
+                if p[j] not in (s[i + j], '?'):
+                    return -1
+            else:
                 return i
         return -1
 
@@ -14,12 +17,12 @@ def isMatch(s = 'acdcb',p='a*c?b'):
     if len(parts) == 1:
         return len(s) == len(p) and find(s, p) >= 0
 
-    print(find(s,parts[0]))
     if find(s, parts[0]) != 0:
         return False
 
     s = s[len(parts.pop(0)):]
     n = len(s) - len(parts[-1])
+
     if find(s[n:], parts.pop()) != 0:
         return False
 
@@ -30,8 +33,16 @@ def isMatch(s = 'acdcb',p='a*c?b'):
             return False
         s = s[index + len(part):]
 
-
     return True
+
+    '''
+    def all(iterable):
+        for element in iterable:
+            if not element:
+                return False
+        return True
+    '''
+
 
     '''
     if len(s) - p.count('*') < len(p) - p.count('*'):
