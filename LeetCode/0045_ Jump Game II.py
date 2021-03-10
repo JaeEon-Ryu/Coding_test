@@ -6,12 +6,24 @@ Each element in the array represents your maximum jump length at that position.
 Your goal is to reach the last index in the minimum number of jumps.
 
 You can assume that you can always reach the last index.
-
-그리디로 푸는 방법
-이분 탐색으로 푸는 방법
-dp로 푸는 방법
-
 '''
+
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+
+        # reference : JustForWanShua
+
+        result, edge, maxEdge = 0, 0, 0
+
+        for i in range(len(nums)):
+            if i > edge:  # 점프 개수가 증가되는 조건  ( 최대 범위보다 현재 인덱스 i가 더 높다면 )
+                edge = maxEdge  # 다음 인덱스 위치 결정
+                result += 1  # 최대 거리 점프로 인해 점프 개수 증가
+
+            maxEdge = max(maxEdge, i + nums[i])  # 임시 인덱스 위치 갱신
+
+        return result
+
 
 '''
 # 시간제한 초과가 걸린 코드 ( 재귀 )
