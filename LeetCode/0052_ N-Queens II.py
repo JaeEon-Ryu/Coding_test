@@ -1,16 +1,5 @@
-'''
-The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
-
-Given an integer n, return all distinct solutions to the n-queens puzzle.
-
-Each solution contains a distinct board configuration of the n-queens' placement,
-where 'Q' and '.' both indicate a queen and an empty space, respectively.
-'''
-
-
 class Solution:
-    def solveNQueens(self, n: int) -> List[List[str]]:
-
+    def totalNQueens(self, n: int) -> int:
         import copy
 
         # 해당 위치 기준 8방향을 검사하며 배치될 수 있는지 검사
@@ -32,6 +21,8 @@ class Solution:
             p[i] = ''.join(helper)
 
         def arrange_Q(p, i):  # p = puzzle
+            global result
+
             for j in range(len(p)):
                 if can_arrange(p, i, j):  # 해당 위치에 배치될 수 있음
                     p_copy = copy.deepcopy(p)  # 다음 column도 참조해야 하므로 copy 사용
@@ -40,11 +31,34 @@ class Solution:
                     if i + 1 < len(p):  # 다음 행으로 분기
                         arrange_Q(p_copy, i + 1)
                     else:  # 다음 행이 없으면 result에 추가
-                        result.append(p_copy)
+                        result += 1
 
-        result = []
+        global result
+        result = 0
         puzzle = ['.' * n] * n
         # 리스트, 행 인덱스 대한 정보를 인자로 넘겨주며 recursive하게 함수 실행
         arrange_Q(puzzle, 0)
 
         return result
+
+'''
+더 깔끔하고 더 빠른 다른 사람의 코드
+reference : patrick40
+
+class Solution:
+    def totalNQueens(self, n: int, diag1=set(), diag2=set(), cols=set(), row=0) -> int:
+        if row == n: return 1
+        count = 0
+        for col in range(n):
+            if row+col in diag1 or row-col in diag2 or col in cols: continue
+            diag1.add(row+col)
+            diag2.add(row-col)
+            cols.add(col)
+            
+            count += self.totalNQueens(n, diag1, diag2, cols, row + 1)
+            
+            diag1.remove(row+col)
+            diag2.remove(row-col)
+            cols.remove(col)
+        return count
+'''
