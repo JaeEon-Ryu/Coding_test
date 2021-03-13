@@ -10,7 +10,6 @@ where 'Q' and '.' both indicate a queen and an empty space, respectively.
 
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-
         import copy
 
         # 해당 위치 기준 8방향을 검사하며 배치될 수 있는지 검사
