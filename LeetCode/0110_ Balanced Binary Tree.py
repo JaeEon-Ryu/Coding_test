@@ -13,30 +13,21 @@ a binary tree in which the left and right subtrees of every node differ in heigh
 #         self.left = left
 #         self.right = right
 
-'''
-수정해야함
-'''
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
-        self.depths = []
-        self.find_depth(root, 0)
+        if root is None:
+            return True
 
-        depths = sorted(list(set(self.depths)))
-        if depths:
-            temp = depths[0]
-            for i in range(1,len(depths)-1):
-                if depths[i] - temp > 1:
-                    return False
-                temp = depths[i]
+        l_depth = self.max_depth(root.left)
+        r_depth = self.max_depth(root.right)
 
-        return True
+        if abs(l_depth - r_depth) > 1:
+            return False
 
-    def find_depth(self, root: TreeNode, depth):
-        if not root:
-            self.depths.append(depth)
-            return
+        return self.isBalanced(root.left) and self.isBalanced(root.right)
 
-        self.find_depth(root.left, depth + 1)
-        self.find_depth(root.right, depth + 1)
+    def max_depth(self, root: int) -> int:
+        if root is None:
+            return 0
 
-
+        return max(self.max_depth(root.left), self.max_depth(root.right)) + 1
