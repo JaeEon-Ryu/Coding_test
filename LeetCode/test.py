@@ -1,41 +1,41 @@
-class Solution:
-
-    # reference : user4507
-
-    def solveSudoku(self, board: 'List[List[str]]') -> 'None':
-        self.board = board
-        self.solve()
-
-    def findUnassigned(self):
-        for row in range(9):
-            for col in range(9):
-                if self.board[row][col] == '.':
-                    return row, col
-        return -1, -1
-
-    def solve(self):
-        row, col = self.findUnassigned()
-        if (row, col) == (-1, -1):
-            return True
-
-        for num in map(str, range(1, 10)):
-            if self.isSafe(row, col, num):
-                self.board[row][col] = num
-                if self.solve(): # 다음 숫자 참조
-                    return True
-                self.board[row][col] = '.'
-
-    # 가로, 세로, 사각형에 있는 중복된 숫자를 판별하는 기능
-    # 이 기능을 50~70 줄에 걸쳐 썼는데 이렇게 쓸 수 있음에 배우고 간다
-    def isSafe(self, row, col, ch):
-        rowSafe = all(self.board[row][_] != ch for _ in range(9))
-        colSafe = all(self.board[_][col] != ch for _ in range(9))
-        squareSafe = all(self.board[r][c] != ch for r in self.getRange(row) for c in self.getRange(col))
-        return rowSafe and colSafe and squareSafe
-
-    def getRange(self, x):
-        x -= x % 3
-        return range(x, x + 3)
+# class Solution:
+#
+#     # reference : user4507
+#
+#     def solveSudoku(self, board: 'List[List[str]]') -> 'None':
+#         self.board = board
+#         self.solve()
+#
+#     def findUnassigned(self):
+#         for row in range(9):
+#             for col in range(9):
+#                 if self.board[row][col] == '.':
+#                     return row, col
+#         return -1, -1
+#
+#     def solve(self):
+#         row, col = self.findUnassigned()
+#         if (row, col) == (-1, -1):
+#             return True
+#
+#         for num in map(str, range(1, 10)):
+#             if self.isSafe(row, col, num):
+#                 self.board[row][col] = num
+#                 if self.solve(): # 다음 숫자 참조
+#                     return True
+#                 self.board[row][col] = '.'
+#
+#     # 가로, 세로, 사각형에 있는 중복된 숫자를 판별하는 기능
+#     # 이 기능을 50~70 줄에 걸쳐 썼는데 이렇게 쓸 수 있음에 배우고 간다
+#     def isSafe(self, row, col, ch):
+#         rowSafe = all(self.board[row][_] != ch for _ in range(9))
+#         colSafe = all(self.board[_][col] != ch for _ in range(9))
+#         squareSafe = all(self.board[r][c] != ch for r in self.getRange(row) for c in self.getRange(col))
+#         return rowSafe and colSafe and squareSafe
+#
+#     def getRange(self, x):
+#         x -= x % 3
+#         return range(x, x + 3)
 
 '''
 import copy
@@ -149,21 +149,29 @@ def solveSudoku(board) -> None:
         # print()
 '''
 
-board = [[".",".","9","7","4","8",".",".","."],
-     ["7",".",".",".",".",".",".",".","."],
-     [".","2",".","1",".","9",".",".","."],
-     [".",".","7",".",".",".","2","4","."],
-     [".","6","4",".","1",".","5","9","."],
-     [".","9","8",".",".",".","3",".","."],
-     [".",".",".","8",".","3",".","2","."],
-     [".",".",".",".",".",".",".",".","6"],
-     [".",".",".","2","7","5","9",".","."]]
+# board = [[".",".","9","7","4","8",".",".","."],
+#      ["7",".",".",".",".",".",".",".","."],
+#      [".","2",".","1",".","9",".",".","."],
+#      [".",".","7",".",".",".","2","4","."],
+#      [".","6","4",".","1",".","5","9","."],
+#      [".","9","8",".",".",".","3",".","."],
+#      [".",".",".","8",".","3",".","2","."],
+#      [".",".",".",".",".",".",".",".","6"],
+#      [".",".",".","2","7","5","9",".","."]]
+#
+# sol = Solution()
+# sol.solveSudoku(board)
+#
+# for i in range(9):
+#     for j in range(9):
+#         print(board[i][j], end=' ')
+#     print()
+# print()
 
-sol = Solution()
-sol.solveSudoku(board)
+test = dict()
+test[0] = 5
+test[1] = 3
 
-for i in range(9):
-    for j in range(9):
-        print(board[i][j], end=' ')
-    print()
-print()
+print(test)
+for _ in test:
+    print(_)
