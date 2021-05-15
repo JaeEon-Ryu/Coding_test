@@ -1,0 +1,12 @@
+/*
+Write a SQL query for a report that provides the following information for each person in the Person table,
+regardless if there is an address for each of those people:
+
+FirstName, LastName, City, State
+*/
+
+-- Write your MySQL query statement below
+
+SELECT FirstName, LastName, A.City AS City, A.State AS State
+FROM Person AS P LEFT JOIN Address AS A
+ON P.PersonId = A.PersonId
