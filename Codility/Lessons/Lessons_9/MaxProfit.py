@@ -1,6 +1,6 @@
 # you can write to stdout for debugging purposes, e.g.
 # print("this is a debug message")
-# 제일 가격이 낮을 때 사서, 높을 때 파는 
+# 제일 가격이 낮을 때 사서, 높을 때 파는
 
 def solution(A):
     # write your code in Python 3.6
