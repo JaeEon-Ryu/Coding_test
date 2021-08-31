@@ -15,12 +15,11 @@ class Main {
             this.price = price;
         }
     }
-    
-    class PizzaStore  {
-    private ArrayList<Food> menuList;
-    private ArrayList<String> orderList;
+    class PizzaStore implements DeliveryStore {
+        private ArrayList<Food> menuList;
+        private ArrayList<String> orderList;
         
-        public void PizzaStore(){
+        public PizzaStore(){
             menuList = new ArrayList<Food>();
             String[] menuNames = {"Cheese", "Potato", "Shrimp", "Pineapple", "Meatball"};
             int[] menuPrices = {11100, 12600, 13300, 21000, 19500};
@@ -35,7 +34,7 @@ class Main {
                 this.orderList.add(orderList[i]);
         }
         
-        public int getTotalPrice(String[] orderList){
+        public int getTotalPrice(){
             int totalPrice = 0;
             Iterator<String> iter = orderList.iterator();
             while (iter.hasNext()) {
@@ -56,8 +55,7 @@ class Main {
         
         return totalPrice;
     }
-
-     // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다.
+    // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다.
     public static void main(String[] args) {
         Main sol = new Main();
         String[] orderList = {"Cheese", "Pineapple", "Meatball"};
